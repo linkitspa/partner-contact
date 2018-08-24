@@ -1,0 +1,11 @@
+"id","name","acronym","country_id:id"
+it_individual,"Impresa individuale",,base.it
+it_family,"Impresa familiare",,base.it
+it_snc,"Società in Nome Collettivo","snc",base.it
+it_sas,"Società in Accomandita Semplice","sas",base.it
+it_srl,"Società a Responsabilità Limitata","srl",base.it
+it_srlu,"Società a Responsabilità Limitata unipersonale","srl",base.it
+it_srls,"Società a Responsabilità Limitata Semplificata","srls",base.it
+it_spa,"Società Per Azioni","spa",base.it
+it_sapa,"Società in Accomandita Per Azioni","sapa",base.it
+it_cooperative,"Società cooperativa",,base.it

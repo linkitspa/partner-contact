@@ -10,12 +10,26 @@ class ResPartner(models.Model):
 
     legal_form_id = fields.Many2one('res.partner.form', string=_("Legal form"))
 
-    @api.onchange
-    def _onchange_name(self):
+    @api.onchange('country_id', 'name')
+    def _onchange_country_name(self):
         if self.name and self.is_company:
-            import pdb; pdb.set_trace()
+            legal_form, stripped_name = self.env['res.partner.form'] \
+                .guess_by_name(self.name, self.country_id)
 
-            legal_form = self.env['res.partner.form'].guess_by_name(self.name, self.country_id)
+            if legal_form:
+                return {
+                    'value': {
+                        'legal_form_id': legal_form.id,
+                        #
+                        # If the concatenation of the partner's name with the
+                        #  legal form was possible, it would be redundant to
+                        #  leave untouched the partner's name with the legal
+                        #  form written in it.
+                        #
+                        # 'name': stripped_name
+                        #
+                    }
+                }
 
     # @api.multi
     # @api.depends('is_company', 'name', 'parent_id.name',

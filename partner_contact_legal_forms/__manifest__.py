@@ -20,8 +20,8 @@
     'depends': ['base'],
 
     'data': [
-        'data/res_partner_form.csv'
-        
+        'data/res.partner.form.csv',
+        'security/ir.model.access.csv',
         'views/res_partner.xml'
     ],
     'demo': [],

@@ -6,7 +6,7 @@ import re
 
 from odoo import _, api, fields, models
 
-JOIN_PATTERN = '(\.\s?)?'
+JOIN_PATTERN = '(?:\.\s?)?'
 
 
 class ResPartnerForm(models.Model):
@@ -16,13 +16,12 @@ class ResPartnerForm(models.Model):
 
     @classmethod
     def _get_pattern(cls, acronym):
-        chars = list(acronym)
-        pattern = ''
+        pattern = '(.*?)\s'
 
-        for char in chars:
+        for char in acronym:
             pattern += '%s%s' % (char, JOIN_PATTERN)
 
-        return '\s%s[\s^]' % pattern
+        return pattern
 
     @classmethod
     def _get_regex(cls, acronym):
@@ -68,6 +67,6 @@ class ResPartnerForm(models.Model):
             result = regex.match(name)
 
             if result:
-                return form
+                return form, result.group(1)
 
-        return False
+        return False, name
